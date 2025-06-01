@@ -1,0 +1,8 @@
+yt-dlp
+youtube-comment-downloader
+openai
+demucs
+librosa
+soundfile
+numpy
+scikit-learn
