@@ -1,6 +1,7 @@
 *.wav
 *.mp3
 *.pyc
+*.csv
 
 __pycache__/
 separated/
