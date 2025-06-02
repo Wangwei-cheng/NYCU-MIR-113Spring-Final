@@ -43,21 +43,18 @@ def init_yamnet():
         lines = response.text.strip().split('\n')[1:]
         yamnet_labels = [line.split(',')[2].strip() for line in lines]
 
-# 分析音檔
+
 def yamnet_analyze(input_path):
     if yamnet_model is None or yamnet_labels is None:
         raise RuntimeError("請先呼叫 init_yamnet()")
 
-    # 讀取音訊
     waveform, sr = librosa.load(input_path, sr=16000, mono=True)
     scores, embeddings, spectrogram = yamnet_model(waveform)
 
-    # 取得每一類別的平均分數
     mean_scores = tf.reduce_mean(scores, axis=0).numpy()
 
     nonzero_indices = np.where(mean_scores > 0.001)[0]
     results = [(yamnet_labels[i], mean_scores[i]) for i in nonzero_indices]
-    # 按照分數從高到低排序
     results.sort(key=lambda x: x[1], reverse=True)
 
     instruments = [label for label, score in results if any(k in label.lower() for k in instrument_keywords)]

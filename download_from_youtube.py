@@ -83,7 +83,7 @@ def get_video_metadata(youtube_url):
 def extract_playlist_urls(playlist_url):
     ydl_opts = {
         'quiet': True,
-        'extract_flat': True,  # 不下載影片，只列出所有 URL
+        'extract_flat': True,
         'skip_download': True
     }
 

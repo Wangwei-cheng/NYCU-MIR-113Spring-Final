@@ -32,7 +32,6 @@ def generate_prompt(comments, instruments=None, genres=None, tempo=None, metadat
         "}\n"
     )
 
-    # 加入影片標題與音訊提示
     info = f"The YouTube video title is: {metadata['title']}\n"
     info += "The following information was automatically extracted from the audio (for your reference):\n"
 
@@ -45,7 +44,6 @@ def generate_prompt(comments, instruments=None, genres=None, tempo=None, metadat
 
     prompt = info + "\n" + prompt
 
-    # 加入留言內容
     prompt += "\nUser comments and likes:\n"
     for i, comment in enumerate(comments, 1):
         prompt += f"{i}. {comment}\n"
